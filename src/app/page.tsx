@@ -1,7 +1,7 @@
 "use client";
 
 import { I18nProvider } from "@/i18n";
-import { Navbar } from "@/components/layout/Navbar";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { DownloadSection } from "@/components/sections/DownloadSection";
@@ -14,19 +14,23 @@ export default function Home() {
   return (
     <I18nProvider>
       <EmberParticles />
-      <Navbar />
-      <main className="relative z-10">
-        <HeroSection />
-        <div className="medieval-divider w-full" />
-        <FeaturesSection />
-        <div className="medieval-divider w-full" />
-        <DownloadSection />
-        <div className="medieval-divider w-full" />
-        <ChangelogSection />
-        <div className="medieval-divider w-full" />
-        <RoadmapSection />
-      </main>
-      <Footer />
+      <Sidebar />
+
+      {/* Main content — offset by sidebar width on desktop */}
+      <div className="lg:ml-64">
+        <main className="relative z-10">
+          <HeroSection />
+          <div className="medieval-divider w-full" />
+          <FeaturesSection />
+          <div className="medieval-divider w-full" />
+          <DownloadSection />
+          <div className="medieval-divider w-full" />
+          <ChangelogSection />
+          <div className="medieval-divider w-full" />
+          <RoadmapSection />
+        </main>
+        <Footer />
+      </div>
     </I18nProvider>
   );
 }

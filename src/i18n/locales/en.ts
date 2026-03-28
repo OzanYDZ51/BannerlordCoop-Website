@@ -1,5 +1,6 @@
 const en = {
   nav: {
+    home: "Home",
     features: "Features",
     download: "Download",
     changelog: "Changelog",

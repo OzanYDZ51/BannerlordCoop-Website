@@ -2,6 +2,7 @@ import type en from "./en";
 
 const tr: typeof en = {
   nav: {
+    home: "Ana Sayfa",
     features: "\u00d6zellikler",
     download: "\u0130ndir",
     changelog: "De\u011fi\u015fiklikler",

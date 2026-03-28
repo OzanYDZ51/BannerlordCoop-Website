@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Calradia Online - Play Campaign Together",
   description: "Play Mount & Blade II: Bannerlord campaign with friends. Online multiplayer mod. Free download.",
   keywords: ["bannerlord", "coop", "multiplayer", "mod", "mount and blade", "online", "campaign", "calradia"],
+  icons: { icon: "/favicon.svg" },
   openGraph: {
     title: "Calradia Online",
     description: "Play Bannerlord campaign with friends. Free multiplayer mod.",

@@ -4,6 +4,7 @@
   --color-bg-primary: #0a0a0f;
   --color-bg-secondary: #12121a;
   --color-bg-card: #1a1a25;
+  --color-bg-sidebar: #08080d;
   --color-gold: #c8a84e;
   --color-gold-bright: #e4c76b;
   --color-gold-dim: #8a6d2b;
@@ -31,17 +32,18 @@
     background-color: color-mix(in srgb, var(--color-gold) 30%, transparent);
     color: var(--color-gold-bright);
   }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
 }
 
 @layer utilities {
   .text-glow-gold {
     text-shadow: 0 0 20px color-mix(in srgb, var(--color-gold) 40%, transparent),
                  0 0 40px color-mix(in srgb, var(--color-gold) 15%, transparent);
-  }
-
-  .text-glow-blood {
-    text-shadow: 0 0 20px color-mix(in srgb, var(--color-blood-bright) 40%, transparent),
-                 0 0 40px color-mix(in srgb, var(--color-blood-bright) 15%, transparent);
   }
 
   .border-glow-gold {

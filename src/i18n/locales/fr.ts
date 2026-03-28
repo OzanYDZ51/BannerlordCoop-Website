@@ -2,6 +2,7 @@ import type en from "./en";
 
 const fr: typeof en = {
   nav: {
+    home: "Accueil",
     features: "Fonctionnalit\u00e9s",
     download: "T\u00e9l\u00e9charger",
     changelog: "Changelog",
