@@ -66,13 +66,12 @@ export function DownloadSection() {
                 </div>
               </>
             ) : (
-              <a
-                href="https://github.com/OzanYDZ51/BannerlordCoop/releases"
-                target="_blank"
-                className="px-10 py-4 border-2 border-gold text-gold font-heading text-lg uppercase tracking-widest hover:bg-gold/10 transition-all"
-              >
-                View Releases on GitHub
-              </a>
+              <div className="text-center">
+                <div className="text-text-secondary mb-4">Download not available yet. Coming soon!</div>
+                <div className="px-12 py-5 border-2 border-border text-text-secondary font-heading text-xl uppercase tracking-widest opacity-50 cursor-not-allowed">
+                  Download Launcher
+                </div>
+              </div>
             )}
 
             <div className="text-text-secondary/60 text-xs mt-2 max-w-sm">
