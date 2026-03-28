@@ -47,15 +47,16 @@ export function Navbar() {
           ))}
 
           {/* Language switcher */}
-          <div className="flex items-center gap-1 border border-border rounded px-1">
+          <div className="flex items-center gap-0.5">
             {LOCALES.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLocale(l.code)}
-                className={`px-2 py-1 text-xs uppercase tracking-wider transition-all ${
+                title={l.label}
+                className={`text-lg px-1.5 py-1 rounded transition-all ${
                   locale === l.code
-                    ? "text-gold bg-gold/10 font-semibold"
-                    : "text-text-secondary hover:text-gold"
+                    ? "scale-110 drop-shadow-[0_0_6px_rgba(200,168,78,0.5)]"
+                    : "opacity-50 hover:opacity-100 hover:scale-105"
                 }`}
               >
                 {l.flag}

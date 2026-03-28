@@ -10,9 +10,9 @@ export type Locale = "en" | "fr" | "tr";
 export type Translations = typeof en;
 
 export const LOCALES: { code: Locale; label: string; flag: string }[] = [
-  { code: "en", label: "English", flag: "EN" },
-  { code: "fr", label: "Francais", flag: "FR" },
-  { code: "tr", label: "Turkce", flag: "TR" },
+  { code: "en", label: "English", flag: "\u{1F1EC}\u{1F1E7}" },
+  { code: "fr", label: "Fran\u00e7ais", flag: "\u{1F1EB}\u{1F1F7}" },
+  { code: "tr", label: "T\u00fcrk\u00e7e", flag: "\u{1F1F9}\u{1F1F7}" },
 ];
 
 const dictionaries: Record<Locale, Translations> = { en, fr, tr };
