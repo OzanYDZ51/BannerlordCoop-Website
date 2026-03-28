@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #12121a;
+  --color-bg-card: #1a1a25;
+  --color-gold: #c8a84e;
+  --color-gold-bright: #e4c76b;
+  --color-gold-dim: #8a6d2b;
+  --color-blood: #8b1a1a;
+  --color-blood-bright: #c62828;
+  --color-steel: #9ca3af;
+  --color-parchment: #d4c5a0;
+  --color-text-primary: #e8e0d0;
+  --color-text-secondary: #9a917f;
+  --color-border: #2a2a35;
+  --color-border-gold: #3d3420;
+
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-gold) 30%, transparent);
+    color: var(--color-gold-bright);
+  }
+}
+
+@layer utilities {
+  .text-glow-gold {
+    text-shadow: 0 0 20px color-mix(in srgb, var(--color-gold) 40%, transparent),
+                 0 0 40px color-mix(in srgb, var(--color-gold) 15%, transparent);
+  }
+
+  .text-glow-blood {
+    text-shadow: 0 0 20px color-mix(in srgb, var(--color-blood-bright) 40%, transparent),
+                 0 0 40px color-mix(in srgb, var(--color-blood-bright) 15%, transparent);
+  }
+
+  .border-glow-gold {
+    box-shadow: 0 0 15px color-mix(in srgb, var(--color-gold) 20%, transparent),
+                inset 0 0 15px color-mix(in srgb, var(--color-gold) 5%, transparent);
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .medieval-divider {
+    background: linear-gradient(90deg, transparent, var(--color-gold-dim), var(--color-gold), var(--color-gold-dim), transparent);
+    height: 1px;
+  }
+}
