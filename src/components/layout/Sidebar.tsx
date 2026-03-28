@@ -57,16 +57,15 @@ export function Sidebar() {
 
   return (
     <motion.aside
-      className="fixed left-0 top-0 bottom-0 w-72 z-50 hidden lg:flex flex-col"
+      className="fixed left-[5%] top-0 bottom-0 w-64 z-50 hidden lg:flex flex-col justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.5 }}
     >
-      {/* Gradient overlay — like the game's dark left panel */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent pointer-events-none" />
+      {/* No panel background — text floats over the scene like the game */}
 
       {/* Logo area */}
-      <div className="relative px-8 pt-10 pb-8">
+      <div className="relative px-2 pb-8">
         <a href="#hero" className="block">
           {/* Replace with <img src="/logo.png" className="h-12" /> when logo is provided */}
           <div className="font-heading text-gold font-black text-2xl tracking-wider leading-none">
@@ -79,7 +78,7 @@ export function Sidebar() {
       </div>
 
       {/* Menu items — game-style */}
-      <nav className="relative flex-1 px-4 mt-4">
+      <nav className="relative px-0">
         {links.map((link, i) => {
           const isActive = activeSection === link.id;
           const isHovered = hoveredItem === link.id;
@@ -132,8 +131,8 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Language flags — bottom */}
-      <div className="relative px-8 pb-8">
+      {/* Language flags */}
+      <div className="relative px-2 pt-6">
         <div className="flex items-center gap-3">
           {LOCALES.map((l) => {
             const Flag = flagComponents[l.code];

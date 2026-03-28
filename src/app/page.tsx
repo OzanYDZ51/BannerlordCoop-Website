@@ -16,8 +16,8 @@ export default function Home() {
       <EmberParticles />
       <Sidebar />
 
-      {/* Main content — offset by sidebar width on desktop */}
-      <div className="lg:ml-64">
+      {/* Main content — full width, sidebar floats over */}
+      <div>
         <main className="relative z-10">
           <HeroSection />
           <div className="medieval-divider w-full" />
