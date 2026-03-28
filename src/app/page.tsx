@@ -1,5 +1,6 @@
 "use client";
 
+import { I18nProvider } from "@/i18n";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
@@ -11,7 +12,7 @@ import { EmberParticles } from "@/components/effects/EmberParticles";
 
 export default function Home() {
   return (
-    <>
+    <I18nProvider>
       <EmberParticles />
       <Navbar />
       <main className="relative z-10">
@@ -26,6 +27,6 @@ export default function Home() {
         <RoadmapSection />
       </main>
       <Footer />
-    </>
+    </I18nProvider>
   );
 }

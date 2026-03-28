@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useI18n } from "@/i18n";
 
 export function HeroSection() {
+  const { t } = useI18n();
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/60 via-bg-primary/30 to-bg-primary" />
 
-      {/* Radial gold glow */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
         initial={{ opacity: 0 }}
@@ -23,13 +24,9 @@ export function HeroSection() {
       </motion.div>
 
       <div className="relative z-10 text-center px-6 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
           <span className="inline-block px-4 py-1.5 border border-gold/30 text-gold text-xs uppercase tracking-[0.3em] font-medium mb-8">
-            Mount & Blade II: Bannerlord
+            {t.hero.badge}
           </span>
         </motion.div>
 
@@ -39,7 +36,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Coop &<br />Online
+          {t.hero.title1}<br />{t.hero.title2}
         </motion.h1>
 
         <motion.p
@@ -48,8 +45,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          Conquer Calradia together. Play the full campaign with your friends
-          in online multiplayer. Build your kingdom, fight battles, forge alliances.
+          {t.hero.subtitle}
         </motion.p>
 
         <motion.div
@@ -58,26 +54,15 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <a
-            href="#download"
-            className="px-10 py-4 bg-gold/10 border-2 border-gold text-gold font-heading text-lg uppercase tracking-widest hover:bg-gold/20 hover:shadow-[0_0_30px_rgba(200,168,78,0.3)] transition-all duration-300"
-          >
-            Download Free
+          <a href="#download" className="px-10 py-4 bg-gold/10 border-2 border-gold text-gold font-heading text-lg uppercase tracking-widest hover:bg-gold/20 hover:shadow-[0_0_30px_rgba(200,168,78,0.3)] transition-all duration-300">
+            {t.hero.cta}
           </a>
-          <a
-            href="#features"
-            className="px-8 py-4 border border-border text-text-secondary text-sm uppercase tracking-widest hover:text-gold hover:border-gold/50 transition-all"
-          >
-            Discover Features
+          <a href="#features" className="px-8 py-4 border border-border text-text-secondary text-sm uppercase tracking-widest hover:text-gold hover:border-gold/50 transition-all">
+            {t.hero.ctaSecondary}
           </a>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
+        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gold/40">
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>

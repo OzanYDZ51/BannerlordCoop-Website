@@ -2,22 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
-const links = [
-  { label: "Features", href: "#features" },
-  { label: "Download", href: "#download" },
-  { label: "Changelog", href: "#changelog" },
-  { label: "Roadmap", href: "#roadmap" },
-];
+import { useI18n, LOCALES } from "@/i18n";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { locale, setLocale, t } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const links = [
+    { label: t.nav.features, href: "#features" },
+    { label: t.nav.download, href: "#download" },
+    { label: t.nav.changelog, href: "#changelog" },
+    { label: t.nav.roadmap, href: "#roadmap" },
+  ];
 
   return (
     <motion.nav
@@ -43,11 +45,29 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+
+          {/* Language switcher */}
+          <div className="flex items-center gap-1 border border-border rounded px-1">
+            {LOCALES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => setLocale(l.code)}
+                className={`px-2 py-1 text-xs uppercase tracking-wider transition-all ${
+                  locale === l.code
+                    ? "text-gold bg-gold/10 font-semibold"
+                    : "text-text-secondary hover:text-gold"
+                }`}
+              >
+                {l.flag}
+              </button>
+            ))}
+          </div>
+
           <a
             href="#download"
             className="px-5 py-2 border border-gold/50 text-gold text-sm uppercase tracking-widest hover:bg-gold/10 hover:border-gold transition-all"
           >
-            Download
+            {t.nav.downloadBtn}
           </a>
         </div>
       </div>
