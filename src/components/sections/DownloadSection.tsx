@@ -35,36 +35,16 @@ export function DownloadSection() {
 
         <ScrollReveal delay={0.2}>
           <div className="inline-flex flex-col items-center gap-5">
-            {loading ? (
-              <div className="text-text-secondary/50 animate-pulse text-sm">...</div>
-            ) : zip ? (
-              <>
-                <motion.a
-                  href={zip.browser_download_url}
-                  className="group relative flex items-center gap-3 px-14 py-5 border border-gold/40 text-gold font-heading text-base uppercase tracking-[0.2em] overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/10 transition-all duration-500" />
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_30px_rgba(200,168,78,0.15)]" />
-
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="relative z-10">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" x2="12" y1="15" y2="3" />
-                  </svg>
-                  <span className="relative z-10">{t.download.cta}</span>
-                </motion.a>
-                <div className="flex items-center gap-4 text-text-secondary/60 text-xs">
-                  <span className="text-gold/70">{release?.tag_name}</span>
-                  <span>{formatBytes(zip.size)}</span>
-                  <span>Windows</span>
-                </div>
-              </>
-            ) : (
-              <div className="text-text-secondary/50 text-sm">{t.download.unavailable}</div>
-            )}
+            {/* Download temporarily disabled */}
+            <div className="relative flex items-center gap-3 px-14 py-5 border border-white/10 text-text-secondary/40 font-heading text-base uppercase tracking-[0.2em] cursor-not-allowed opacity-50">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" x2="12" y1="15" y2="3" />
+              </svg>
+              <span>{t.download.cta}</span>
+            </div>
+            <div className="text-text-secondary/40 text-xs mt-2">{t.download.unavailable}</div>
             <div className="text-text-secondary/30 text-[10px] mt-4 max-w-sm">{t.download.requires}</div>
           </div>
         </ScrollReveal>
