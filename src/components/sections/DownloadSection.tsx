@@ -11,9 +11,9 @@ export function DownloadSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/OzanYDZ51/BannerlordCoop/releases/latest")
+    fetch("/api/releases/latest")
       .then((r) => r.json())
-      .then(setRelease)
+      .then((data) => { if (data.release) setRelease(data.release); })
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);

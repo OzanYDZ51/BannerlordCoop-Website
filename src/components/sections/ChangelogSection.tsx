@@ -9,18 +9,17 @@ export function ChangelogSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/OzanYDZ51/BannerlordCoop/releases?per_page=20")
+    fetch("/api/releases")
       .then((r) => r.json())
       .then((data) => {
-        if (Array.isArray(data)) {
-          // Only show v1.0.0+ releases (skip old dev versions)
-          const filtered = data.filter((r: GitHubRelease) => {
-            const ver = r.tag_name.replace(/^v/, "");
-            const major = parseInt(ver.split(".")[0] || "0", 10);
-            return major >= 1;
-          });
-          setReleases(filtered);
-        }
+        const all: GitHubRelease[] = data.releases || [];
+        // Only show v1.0.0+ releases (skip old dev versions)
+        const filtered = all.filter((r) => {
+          const ver = r.tag_name.replace(/^v/, "");
+          const major = parseInt(ver.split(".")[0] || "0", 10);
+          return major >= 1;
+        });
+        setReleases(filtered);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
