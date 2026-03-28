@@ -78,7 +78,7 @@ export function Sidebar() {
       </div>
 
       {/* Menu items — game-style */}
-      <nav className="relative px-0">
+      <nav className="relative px-0 py-4 bg-black/40 backdrop-blur-[2px] border-y border-white/[0.04]">
         {links.map((link, i) => {
           const isActive = activeSection === link.id;
           const isHovered = hoveredItem === link.id;
