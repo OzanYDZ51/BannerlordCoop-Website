@@ -57,28 +57,30 @@ export function Sidebar() {
 
   return (
     <motion.aside
-      className="fixed left-[5%] top-0 bottom-0 w-64 z-50 hidden lg:flex flex-col justify-center"
+      className="fixed left-0 top-0 bottom-0 w-80 z-50 hidden lg:flex flex-col justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.5 }}
     >
-      {/* No panel background — text floats over the scene like the game */}
+      {/* Full aside dark band — opaque center, fades on edges like the game */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-transparent" />
 
       {/* Logo area */}
-      <div className="relative px-2 pb-8">
+      <div className="relative px-10 pb-8">
         <a href="#hero" className="block">
           {/* Replace with <img src="/logo.png" className="h-12" /> when logo is provided */}
-          <div className="font-heading text-gold font-black text-2xl tracking-wider leading-none">
+          <div className="font-heading text-gold font-black text-3xl tracking-wider leading-none">
             CALRADIA
           </div>
-          <div className="font-heading text-gold-bright/80 text-lg tracking-[0.3em] font-semibold mt-0.5">
+          <div className="font-heading text-gold-bright/80 text-xl tracking-[0.3em] font-semibold mt-1">
             ONLINE
           </div>
         </a>
       </div>
 
       {/* Menu items — game-style */}
-      <nav className="relative px-0 py-4 bg-black/40 backdrop-blur-[2px] border-y border-white/[0.04]">
+      <nav className="relative px-4">
         {links.map((link, i) => {
           const isActive = activeSection === link.id;
           const isHovered = hoveredItem === link.id;
@@ -87,7 +89,7 @@ export function Sidebar() {
             <motion.a
               key={link.id}
               href={`#${link.id}`}
-              className="relative block py-3 px-6 mb-0.5 cursor-pointer"
+              className="relative block py-4 px-6 mb-1 cursor-pointer"
               onMouseEnter={() => { setHoveredItem(link.id); playHover(); }}
               onMouseLeave={() => setHoveredItem(null)}
               initial={{ opacity: 0, x: -30 }}
@@ -117,7 +119,7 @@ export function Sidebar() {
                 />
               )}
 
-              <span className={`relative font-heading text-sm uppercase tracking-[0.2em] transition-all duration-200 ${
+              <span className={`relative font-heading text-base uppercase tracking-[0.2em] transition-all duration-200 ${
                 isActive
                   ? "text-gold text-glow-gold"
                   : isHovered
@@ -132,7 +134,7 @@ export function Sidebar() {
       </nav>
 
       {/* Language flags */}
-      <div className="relative px-2 pt-6">
+      <div className="relative px-10 pt-8">
         <div className="flex items-center gap-3">
           {LOCALES.map((l) => {
             const Flag = flagComponents[l.code];
