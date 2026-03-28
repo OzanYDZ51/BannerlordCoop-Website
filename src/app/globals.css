@@ -27,6 +27,11 @@
     overflow-x: hidden;
   }
 
+  /* Anchor offset for fixed mobile header */
+  @media (max-width: 1023px) {
+    html { scroll-padding-top: 56px; }
+  }
+
   ::selection {
     background-color: color-mix(in srgb, var(--color-gold) 30%, transparent);
     color: var(--color-gold-bright);
