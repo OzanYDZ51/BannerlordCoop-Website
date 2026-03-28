@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0a0a0f;
-  --color-bg-secondary: #12121a;
-  --color-bg-card: #1a1a25;
-  --color-bg-sidebar: #08080d;
+  --color-bg-primary: #060609;
+  --color-bg-secondary: #0c0c12;
+  --color-bg-card: #111118;
   --color-gold: #c8a84e;
   --color-gold-bright: #e4c76b;
   --color-gold-dim: #8a6d2b;
@@ -12,10 +11,9 @@
   --color-blood-bright: #c62828;
   --color-steel: #9ca3af;
   --color-parchment: #d4c5a0;
-  --color-text-primary: #e8e0d0;
-  --color-text-secondary: #9a917f;
-  --color-border: #2a2a35;
-  --color-border-gold: #3d3420;
+  --color-text-primary: #d8d0c0;
+  --color-text-secondary: #7a7168;
+  --color-border: #1e1e28;
 
   --font-heading: "Cinzel", serif;
   --font-body: "Inter", sans-serif;
@@ -26,6 +24,7 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     font-family: var(--font-body);
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -33,17 +32,17 @@
     color: var(--color-gold-bright);
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--color-bg-primary); }
-  ::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 3px; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 2px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
 }
 
 @layer utilities {
   .text-glow-gold {
-    text-shadow: 0 0 20px color-mix(in srgb, var(--color-gold) 40%, transparent),
-                 0 0 40px color-mix(in srgb, var(--color-gold) 15%, transparent);
+    text-shadow: 0 0 15px color-mix(in srgb, var(--color-gold) 50%, transparent),
+                 0 0 30px color-mix(in srgb, var(--color-gold) 20%, transparent),
+                 0 0 60px color-mix(in srgb, var(--color-gold) 8%, transparent);
   }
 
   .border-glow-gold {
@@ -58,5 +57,22 @@
   .medieval-divider {
     background: linear-gradient(90deg, transparent, var(--color-gold-dim), var(--color-gold), var(--color-gold-dim), transparent);
     height: 1px;
+    opacity: 0.4;
+  }
+
+  /* Game-like section transitions */
+  .section-fade {
+    position: relative;
+  }
+  .section-fade::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--color-bg-primary), transparent);
+    pointer-events: none;
+    z-index: 1;
   }
 }

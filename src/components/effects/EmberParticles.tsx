@@ -12,7 +12,7 @@ export function EmberParticles() {
     if (!ctx) return;
 
     let animId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; life: number; maxLife: number; hue: number }[] = [];
+    const particles: { x: number; y: number; vx: number; vy: number; size: number; life: number; maxLife: number; hue: number; brightness: number }[] = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -22,40 +22,43 @@ export function EmberParticles() {
     window.addEventListener("resize", resize);
 
     const spawn = () => {
-      if (particles.length > 60) return;
-      const maxLife = 200 + Math.random() * 300;
+      if (particles.length > 40) return;
+      const maxLife = 300 + Math.random() * 400;
       particles.push({
         x: Math.random() * canvas.width,
-        y: canvas.height + 10,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: -(0.3 + Math.random() * 0.8),
-        size: 1 + Math.random() * 2.5,
+        y: canvas.height + 5,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: -(0.2 + Math.random() * 0.5),
+        size: 0.5 + Math.random() * 1.5,
         life: 0,
         maxLife,
-        hue: 30 + Math.random() * 20,
+        hue: 28 + Math.random() * 15,
+        brightness: 40 + Math.random() * 20,
       });
     };
 
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (Math.random() < 0.3) spawn();
+      if (Math.random() < 0.15) spawn();
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
-        p.x += p.vx + Math.sin(p.life * 0.02) * 0.3;
+        p.x += p.vx + Math.sin(p.life * 0.015) * 0.2;
         p.y += p.vy;
         p.life++;
         const alpha = Math.max(0, 1 - p.life / p.maxLife);
         if (alpha <= 0) { particles.splice(i, 1); continue; }
 
+        // Core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 90%, 55%, ${alpha * 0.7})`;
+        ctx.fillStyle = `hsla(${p.hue}, 90%, ${p.brightness}%, ${alpha * 0.6})`;
         ctx.fill();
 
+        // Soft glow
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 80%, 50%, ${alpha * 0.15})`;
+        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 80%, ${p.brightness}%, ${alpha * 0.08})`;
         ctx.fill();
       }
 
@@ -73,7 +76,7 @@ export function EmberParticles() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useI18n, LOCALES, type Locale } from "@/i18n";
 import { FlagEN, FlagFR, FlagTR } from "@/components/ui/FlagIcon";
 
@@ -9,9 +9,27 @@ const flagComponents: Record<string, React.FC<{ className?: string }>> = {
   en: FlagEN, fr: FlagFR, tr: FlagTR,
 };
 
+// Subtle hover sound effect (game-like)
+function playHover() {
+  try {
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 800;
+    osc.type = "sine";
+    gain.gain.setValueAtTime(0.03, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.08);
+  } catch {}
+}
+
 export function Sidebar() {
   const { locale, setLocale, t } = useI18n();
   const [activeSection, setActiveSection] = useState("hero");
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const links = [
     { id: "hero", label: t.nav.home },
@@ -30,58 +48,93 @@ export function Sidebar() {
       },
       { rootMargin: "-40% 0px -40% 0px" }
     );
-
     links.forEach((link) => {
       const el = document.getElementById(link.id);
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, [locale]);
 
   return (
     <motion.aside
-      className="fixed left-0 top-0 bottom-0 w-64 bg-bg-sidebar/95 backdrop-blur-sm border-r border-border z-50 hidden lg:flex flex-col"
-      initial={{ x: -264 }}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed left-0 top-0 bottom-0 w-72 z-50 hidden lg:flex flex-col"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 0.5 }}
     >
-      {/* Logo */}
-      <div className="px-6 pt-8 pb-6">
+      {/* Gradient overlay — like the game's dark left panel */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent pointer-events-none" />
+
+      {/* Logo area */}
+      <div className="relative px-8 pt-10 pb-8">
         <a href="#hero" className="block">
-          {/* Placeholder for logo — replace with <img src="/logo.png" /> when provided */}
-          <div className="font-heading text-gold font-bold text-xl tracking-wider leading-tight">
-            CALRADIA<br />
-            <span className="text-gold-bright text-2xl">ONLINE</span>
+          {/* Replace with <img src="/logo.png" className="h-12" /> when logo is provided */}
+          <div className="font-heading text-gold font-black text-2xl tracking-wider leading-none">
+            CALRADIA
+          </div>
+          <div className="font-heading text-gold-bright/80 text-lg tracking-[0.3em] font-semibold mt-0.5">
+            ONLINE
           </div>
         </a>
-        <div className="medieval-divider w-full mt-4" />
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-3">
-        {links.map((link, i) => (
-          <motion.a
-            key={link.id}
-            href={`#${link.id}`}
-            className={`group flex items-center gap-3 px-4 py-3 mb-1 transition-all duration-300 ${
-              activeSection === link.id
-                ? "bg-gold/10 border-l-2 border-gold text-gold"
-                : "border-l-2 border-transparent text-text-secondary hover:text-gold hover:bg-gold/5"
-            }`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + i * 0.08 }}
-          >
-            <span className="font-heading text-sm uppercase tracking-widest">{link.label}</span>
-          </motion.a>
-        ))}
+      {/* Menu items — game-style */}
+      <nav className="relative flex-1 px-4 mt-4">
+        {links.map((link, i) => {
+          const isActive = activeSection === link.id;
+          const isHovered = hoveredItem === link.id;
+
+          return (
+            <motion.a
+              key={link.id}
+              href={`#${link.id}`}
+              className="relative block py-3 px-6 mb-0.5 cursor-pointer"
+              onMouseEnter={() => { setHoveredItem(link.id); playHover(); }}
+              onMouseLeave={() => setHoveredItem(null)}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8 + i * 0.1, duration: 0.4 }}
+            >
+              {/* Active/hover background — like game menu highlight */}
+              <AnimatePresence>
+                {(isActive || isHovered) && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-gold/15 via-gold/5 to-transparent"
+                    initial={{ opacity: 0, scaleX: 0.8 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    exit={{ opacity: 0, scaleX: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ originX: 0 }}
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* Gold left accent bar */}
+              {isActive && (
+                <motion.div
+                  className="absolute left-0 top-1 bottom-1 w-[2px] bg-gold shadow-[0_0_8px_rgba(200,168,78,0.5)]"
+                  layoutId="activeBar"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+
+              <span className={`relative font-heading text-sm uppercase tracking-[0.2em] transition-all duration-200 ${
+                isActive
+                  ? "text-gold text-glow-gold"
+                  : isHovered
+                    ? "text-gold/90"
+                    : "text-text-secondary/70"
+              }`}>
+                {link.label}
+              </span>
+            </motion.a>
+          );
+        })}
       </nav>
 
-      {/* Language switcher */}
-      <div className="px-6 pb-6">
-        <div className="medieval-divider w-full mb-4" />
-        <div className="flex items-center gap-2">
+      {/* Language flags — bottom */}
+      <div className="relative px-8 pb-8">
+        <div className="flex items-center gap-3">
           {LOCALES.map((l) => {
             const Flag = flagComponents[l.code];
             return (
@@ -89,10 +142,10 @@ export function Sidebar() {
                 key={l.code}
                 onClick={() => setLocale(l.code as Locale)}
                 title={l.label}
-                className={`w-8 h-6 rounded overflow-hidden border transition-all ${
+                className={`w-8 h-5 rounded-sm overflow-hidden border transition-all duration-300 ${
                   locale === l.code
-                    ? "border-gold shadow-[0_0_8px_rgba(200,168,78,0.4)] scale-110"
-                    : "border-border opacity-50 hover:opacity-100 hover:scale-105"
+                    ? "border-gold/60 shadow-[0_0_10px_rgba(200,168,78,0.3)] scale-110"
+                    : "border-white/10 opacity-40 hover:opacity-80 hover:scale-105"
                 }`}
               >
                 <Flag className="w-full h-full" />
