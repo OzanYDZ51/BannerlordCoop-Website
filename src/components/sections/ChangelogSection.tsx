@@ -45,7 +45,7 @@ export function ChangelogSection() {
           {releases.map((r, i) => (
             <ScrollReveal key={r.tag_name} delay={i * 0.08}>
               <div className="border border-border hover:border-gold/20 transition-colors p-6 bg-bg-card/30">
-                <div className="flex items-center gap-4 mb-3">
+                <div className="flex items-center gap-4">
                   <span className="px-3 py-1 border border-gold/40 text-gold text-xs font-heading uppercase tracking-widest">
                     {r.tag_name}
                   </span>
@@ -57,13 +57,8 @@ export function ChangelogSection() {
                       {t.changelog.latest}
                     </span>
                   )}
+                  <span className="text-text-primary font-heading font-semibold">{r.name}</span>
                 </div>
-                <h3 className="font-heading text-lg text-text-primary font-semibold mb-2">{r.name}</h3>
-                {r.body && (
-                  <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line max-h-40 overflow-hidden">
-                    {r.body.slice(0, 600)}{r.body.length > 600 ? "..." : ""}
-                  </div>
-                )}
               </div>
             </ScrollReveal>
           ))}
