@@ -1,35 +1,16 @@
 export function Footer() {
   return (
     <footer className="border-t border-border py-12">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="text-center sm:text-left">
-          <div className="font-heading text-gold font-bold tracking-wider">CALRADIA ONLINE</div>
-          <p className="text-text-secondary text-xs mt-1">
-            Fan-made mod. Not affiliated with TaleWorlds Entertainment.
-          </p>
+      <div className="max-w-6xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
+        <div className="font-heading text-gold font-bold tracking-wider text-lg">
+          CALRADIA ONLINE
         </div>
-        <div className="flex items-center gap-6">
-          <a
-            href="https://github.com/OzanYDZ51/BannerlordCoop"
-            target="_blank"
-            className="text-text-secondary hover:text-gold transition-colors text-sm"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://github.com/OzanYDZ51/BannerlordCoop/releases"
-            target="_blank"
-            className="text-text-secondary hover:text-gold transition-colors text-sm"
-          >
-            Releases
-          </a>
-          <a
-            href="https://github.com/OzanYDZ51/BannerlordCoop/issues"
-            target="_blank"
-            className="text-text-secondary hover:text-gold transition-colors text-sm"
-          >
-            Report Bug
-          </a>
+        <p className="text-text-secondary text-xs max-w-md">
+          Fan-made multiplayer mod for Mount & Blade II: Bannerlord.
+          Not affiliated with TaleWorlds Entertainment.
+        </p>
+        <div className="text-text-secondary/40 text-xs mt-2">
+          &copy; {new Date().getFullYear()} Calradia Online
         </div>
       </div>
     </footer>

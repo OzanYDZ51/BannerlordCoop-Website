@@ -10,8 +10,8 @@ const features = [
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
-    title: "2-4 Players Co-op",
-    desc: "Play the full campaign together. Each player controls their own lord with unique party and troops.",
+    title: "Online Multiplayer",
+    desc: "Play the full Bannerlord campaign together with your friends. No player limit. Each player controls their own lord.",
   },
   {
     icon: (
@@ -21,7 +21,7 @@ const features = [
       </svg>
     ),
     title: "Real-Time Battles",
-    desc: "Fight PvP and PvE battles in real-time. Troops, heroes, damage, and deaths fully synchronized.",
+    desc: "Fight together or against each other in fully synchronized real-time battles. Every hit, every death, every move.",
   },
   {
     icon: (
@@ -30,8 +30,8 @@ const features = [
         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
       </svg>
     ),
-    title: "World Map Sync",
-    desc: "See all players moving on the campaign map. NPCs, settlements, diplomacy events all synchronized.",
+    title: "Shared World",
+    desc: "One world, fully synchronized. Every player sees the same map, the same events, the same Calradia.",
   },
   {
     icon: (
@@ -40,7 +40,7 @@ const features = [
       </svg>
     ),
     title: "Dedicated Server",
-    desc: "Server-authoritative architecture. No host advantage. Standalone server process with zero Bannerlord dependency.",
+    desc: "Server-authoritative architecture. No host advantage. Fair gameplay for everyone.",
   },
   {
     icon: (
@@ -49,17 +49,17 @@ const features = [
         <polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" />
       </svg>
     ),
-    title: "Auto-Update Launcher",
-    desc: "Download once. The launcher automatically checks for updates and installs new versions seamlessly.",
+    title: "One-Click Install",
+    desc: "Download the launcher, click play. Auto-updates, auto-installs the mod, auto-detects your game.",
   },
   {
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" /><line x1="4" x2="4" y1="22" y2="15" />
       </svg>
     ),
-    title: "Settlement Sync",
-    desc: "Enter towns, recruit troops, trade goods. Everything synchronized between players in real-time.",
+    title: "Free & Open",
+    desc: "Completely free. Built by the community, for the community. Conquer Calradia together.",
   },
 ];
 

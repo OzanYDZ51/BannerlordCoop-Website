@@ -65,11 +65,10 @@ export function HeroSection() {
             Download Free
           </a>
           <a
-            href="https://github.com/OzanYDZ51/BannerlordCoop"
-            target="_blank"
+            href="#features"
             className="px-8 py-4 border border-border text-text-secondary text-sm uppercase tracking-widest hover:text-gold hover:border-gold/50 transition-all"
           >
-            View on GitHub
+            Discover Features
           </a>
         </motion.div>
 
