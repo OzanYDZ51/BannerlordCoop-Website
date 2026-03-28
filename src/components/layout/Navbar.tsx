@@ -30,7 +30,7 @@ export function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="font-heading text-gold font-bold text-lg tracking-wider">
-          BANNERLORD COOP
+          CALRADIA ONLINE
         </a>
 
         <div className="hidden md:flex items-center gap-8">

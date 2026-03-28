@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bannerlord Coop & Online - Play Campaign Together",
+  title: "Calradia Online - Play Campaign Together",
   description: "Play Mount & Blade II: Bannerlord campaign with friends. Online multiplayer mod for 2-4 players. Free download.",
   keywords: ["bannerlord", "coop", "multiplayer", "mod", "mount and blade", "online", "campaign"],
   openGraph: {
-    title: "Bannerlord Coop & Online",
+    title: "Calradia Online",
     description: "Play Bannerlord campaign with friends. Free multiplayer mod.",
     type: "website",
   },
